@@ -1,80 +1,61 @@
 import { Table, Tag, Space } from 'antd';
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
 const columns = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    title: 'Order Date',
+    dataIndex: 'orderDate',
+    key: 'orderDate',
     render: text => <a>{text}</a>,
   },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+  { 
+    title: 'User',
+    dataIndex: 'userId',
+    key: 'userId',
   },
   {
+    title: 'Qty',
+    dataIndex: 'qty',
+    key: 'qty',
+  },
+   {
+    title: 'Total Price',
+    dataIndex: 'totalPrice',
+    key: 'totalPrice',
+  },
+  {
+    title: 'Pincode',
+    dataIndex: 'pincode',
+    key: 'pincode',
+  },
+ {
     title: 'Address',
     dataIndex: 'address',
     key: 'address',
-  },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: tags => (
-      <>
-        {tags.map(tag => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
   },
   {
     title: 'Action',
     key: 'action',
     render: (text, record) => (
       <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
+        <a>Show</a>
       </Space>
     ),
-  },
-];
-
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
   },
 ];
 
 
 
 function Orderlist(){
-return(<Table columns={columns} dataSource={data} />);
+  const [data,setData]=useState([]);
+  useEffect(()=>{
+    axios.get(`https://temp-app-windowshop.herokuapp.com/orders?filter=%7B%22order%22%3A%20%22id%20DESC%22%7D`)
+    .then(res => {
+      const persons = res.data;
+      setData(res.data);
+    })
+  },[]);
+  console.log(data);
+return(<><h3>Order List</h3><Table columns={columns} dataSource={data} /></>);
 }
 export default Orderlist;

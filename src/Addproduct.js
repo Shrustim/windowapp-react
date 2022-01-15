@@ -1,6 +1,7 @@
 
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
 import {
   Form,
   Input,
@@ -14,40 +15,7 @@ import {
   AutoComplete,
 } from 'antd';
 const { Option } = Select;
-const residences = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-          },
-        ],
-      },
-    ],
-  },
-];
+
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -81,59 +49,35 @@ const tailFormItemLayout = {
 
 const Addproduct = () => {
   const [form] = Form.useForm();
-
+  const [category,setCategory]=useState([]);
+  const [product,setProduct]=useState(null);
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
+    axios.post(`https://temp-app-windowshop.herokuapp.com/products`,values)
+    .then(res => {
+      setCategory(res.data);
+    form.resetFields();
+    })
+
   };
 
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
-  );
-  const suffixSelector = (
-    <Form.Item name="suffix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="USD">$</Option>
-        <Option value="CNY">¥</Option>
-      </Select>
-    </Form.Item>
-  );
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
-
-  const onWebsiteChange = (value) => {
-    if (!value) {
-      setAutoCompleteResult([]);
-    } else {
-      setAutoCompleteResult(['.com', '.org', '.net'].map((domain) => `${value}${domain}`));
-    }
-  };
-
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
+  useEffect(()=>{
+    axios.get(`https://temp-app-windowshop.herokuapp.com/categories`)
+    .then(res => {
+      setCategory(res.data);
+    })
+  },[]);
+  
+  
   return (
 <div style={{width:"70%"}}>
+  <h3>Add Product</h3>
     <Form
       {...formItemLayout}
       form={form}
       name="register"
       onFinish={onFinish}
       initialValues={{
-        residence: ['zhejiang', 'hangzhou', 'xihu'],
-        prefix: '86',
       }}
       scrollToFirstError
     >
@@ -232,7 +176,7 @@ const Addproduct = () => {
 
     
       <Form.Item
-        name="category"
+        name="categoryId"
         label="Category"
         rules={[
           {
@@ -242,9 +186,14 @@ const Addproduct = () => {
         ]}
       >
         <Select placeholder="select your category">
-          <Option value="male">Male</Option>
-          <Option value="female">Female</Option>
-          <Option value="other">Other</Option>
+        { category.length > 0 ? 
+            category.map((i,index)=>{
+              return  <Option value={i.id} key={index}>{i.categoryName}</Option>;
+            })
+          :  null
+          }
+         
+        
         </Select>
       </Form.Item>
 
