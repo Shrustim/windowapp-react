@@ -6,7 +6,7 @@ import Orderlist from "./Orderlist";
 import Userlist from "./Userlist";
 import OrderDetail from "./OrderDetail";
 import Addproduct from "./Addproduct";
-
+import NormalLoginForm from "./NormalLoginForm";
 import './DashboardCss.css';
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
@@ -55,8 +55,8 @@ function Routers() {
             <Route  path="/productadd" element={<Addproduct/>}/>
             <Route  path="/productedit/:id" element={<Addproduct/>}/>
             <Route  path="/orderdetail/:id" element={<OrderDetail/>}/>
+            <Route  path="/login" element={<NormalLoginForm/>}/>
             
-        
         </Routes>
 
             {/* <h4> Product List</h4>
