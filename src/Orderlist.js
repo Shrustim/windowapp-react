@@ -1,5 +1,6 @@
 import { Table, Tag, Space } from 'antd';
 import React, { useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 const columns = [
   {
@@ -38,7 +39,7 @@ const columns = [
     key: 'action',
     render: (text, record) => (
       <Space size="middle">
-        <a>Show</a>
+        <Link to={"/orderdetail/"+text.id+""}>Show</Link>
       </Space>
     ),
   },

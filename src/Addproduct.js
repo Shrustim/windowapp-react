@@ -14,6 +14,9 @@ import {
   Button,
   AutoComplete,
 } from 'antd';
+import {
+  useParams, Link,useNavigate 
+} from "react-router-dom";
 const { Option } = Select;
 
 const formItemLayout = {
@@ -48,17 +51,27 @@ const tailFormItemLayout = {
 };
 
 const Addproduct = () => {
+   const navigate = useNavigate();
+   let { id } = useParams();
   const [form] = Form.useForm();
   const [category,setCategory]=useState([]);
   const [product,setProduct]=useState(null);
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-    axios.post(`https://temp-app-windowshop.herokuapp.com/products`,values)
-    .then(res => {
-      setCategory(res.data);
-    form.resetFields();
-    })
-
+    if(typeof id === "undefined"  ){
+        console.log('Received values of form: ', values);
+        axios.post(`https://temp-app-windowshop.herokuapp.com/products`,values)
+        .then(res => {
+        form.resetFields();
+        })
+   }else{
+       console.log('update values of form: ', values);
+        axios.patch(`https://temp-app-windowshop.herokuapp.com/products/${id}`,values)
+        .then(res => {
+         //form.resetFields();
+         navigate('/productlist');
+         //  history.push("/productlist");
+        })
+   }  
   };
 
   useEffect(()=>{
@@ -68,6 +81,30 @@ const Addproduct = () => {
     })
   },[]);
   
+  const getProductInfoForUpdate = () => {
+    axios.get(`https://temp-app-windowshop.herokuapp.com/products/${id}`)
+      .then(res => {
+        setProduct(res.data);
+        console.log("product",res.data);
+       form.resetFields();
+    })
+  }
+
+   useEffect(()=>{
+     if(typeof id === "undefined"  ){
+      setProduct(null);
+        form.resetFields();
+     }
+   });
+   useEffect(()=>{
+    if(typeof id !== "undefined" ){
+   
+      getProductInfoForUpdate();
+    }
+    
+  },[id]);
+
+  console.log(product);
   
   return (
 <div style={{width:"70%"}}>
@@ -77,8 +114,8 @@ const Addproduct = () => {
       form={form}
       name="register"
       onFinish={onFinish}
-      initialValues={{
-      }}
+      initialValues={product
+      }
       scrollToFirstError
     >
       <Form.Item
@@ -203,6 +240,10 @@ const Addproduct = () => {
         <Button type="primary" htmlType="submit">
           Add Product
         </Button>
+
+        <Link to="/productlist"> <Button type="primary" htmlType="button">
+          Cancel
+        </Button></Link>
       </Form.Item>
     </Form>
 </div>

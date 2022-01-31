@@ -1,80 +1,62 @@
-import { Table, Tag, Space } from 'antd';
+import { Table } from 'antd';
+import {
+  useParams, Link,useNavigate 
+} from "react-router-dom";
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
 const columns = [
   {
+     title: 'Image',
+    dataIndex: 'imageone',
+    key: 'imageone',
+    render: text => <img src={text} style={{height:"100px",width:"100px",borderRadius:"50%"}}></img>,
+  },
+  {
     title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    dataIndex: 'productName',
+    key: 'productName',
     render: text => <a>{text}</a>,
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'Qty',
+    dataIndex: 'qty',
+    key: 'qty',
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: tags => (
-      <>
-        {tags.map(tag => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (text, record) => (
-      <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
-      </Space>
-    ),
-  },
-];
-
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
+    title: 'Price',
+    dataIndex: 'totalPrice',
+    key: 'totalPrice',
+  }
 ];
 
 
 
 function OrderDetail(){
-return(<Table columns={columns} dataSource={data} />);
+   const navigate = useNavigate();
+   let { id } = useParams();
+    const [products,setProducts]=useState(null);
+     const [userDetail,setUserDetail]=useState(null);
+    const getProductInfoOrder = () => {
+       axios.get(`https://temp-app-windowshop.herokuapp.com/orders/${id}`)
+      .then(res => {
+        setUserDetail(res.data);
+        console.log("setUserDetail",res.data);
+       
+    })
+    axios.get(`https://temp-app-windowshop.herokuapp.com/ordersById/${id}`)
+      .then(res => {
+        setProducts(res.data);
+        console.log("products",res.data);
+       
+    })
+  }
+
+     useEffect(()=>{
+    if(typeof id !== "undefined" ){
+     getProductInfoOrder();
+    }
+   },[id]);
+
+return(<Table columns={columns} dataSource={products} />);
 }
 export default OrderDetail;
