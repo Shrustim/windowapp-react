@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { BrowserRouter as Router, Route, Routes ,Link } from 'react-router-dom'
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
@@ -12,16 +13,21 @@ const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
 
+
 function Routers() {
+const [isLogin,setIsLogin] = useState(false);
+console.log("isLogin",isLogin);
+if(isLogin) { 
   return (
     <Router>
    <Layout>
     <Header className="header">
       <div className="logo" />
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
         <Menu.Item key="1">Decorate</Menu.Item>
-       
+        <Menu.Item key="2" onClick={()=>{setIsLogin(false);window.location.href = 'http://localhost:3000'; }}>Sign Out</Menu.Item>
       </Menu>
+    
     </Header>
     <Content style={{ padding: '0 50px' }}>
      
@@ -55,21 +61,11 @@ function Routers() {
             <Route  path="/productadd" element={<Addproduct/>}/>
             <Route  path="/productedit/:id" element={<Addproduct/>}/>
             <Route  path="/orderdetail/:id" element={<OrderDetail/>}/>
-            <Route  path="/login" element={<NormalLoginForm/>}/>
+           
             
         </Routes>
 
-            {/* <h4> Product List</h4>
-       
-           <h4> User List</h4>
          
-           <h4>Order List</h4>
-           
-         <h4>OrderDetail </h4>
-           <OrderDetail />
-         <h4>Add Product</h4>
-         
-          <Addproduct /> */}
         </Content>
       </Layout>
     </Content>
@@ -77,6 +73,16 @@ function Routers() {
   </Layout>
   </Router>
   );
+         }{  return(
+          <Router>
+             <Routes>
+           <Route exact path="/" element={<NormalLoginForm setIsLogin={setIsLogin}/>}/>
+           <Route  path="/login" element={<NormalLoginForm setIsLogin={setIsLogin}/>}/>
+            
+        </Routes>
+             </Router>
+         );
+         }
 }
 
 export default Routers;

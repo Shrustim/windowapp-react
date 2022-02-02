@@ -1,15 +1,24 @@
 import { Form, Input, Button, Checkbox } from 'antd';
+import React, { useState } from 'react';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-const NormalLoginForm = () => {
+const NormalLoginForm = ({setIsLogin}) => {
+  const [errorMessage,setErrorMessage] = useState("");
     const onFinish = (values) => {
       console.log('Received values of form: ', values);
+      if(values.username !== "admin" || values.password !== "123123"){
+        setErrorMessage("Invalid Username and password.");
+      }else{
+        setErrorMessage("");
+        setIsLogin(true);
+      }
+    
     };
   
     return (
         <div style={{    width: "100%",
             display: "flex",
-            justifyContent: "center"}}>
-                <div  style={{    width: "34%",
+            justifyContent: "center", marginTop: "131px"}}>
+                <div  style={{    width: "26%",
                 padding: "18px",
                 border: "1px solid #b3b0b0",
                 borderRadius: "15px",
@@ -52,8 +61,9 @@ const NormalLoginForm = () => {
             type="password"
             placeholder="Password"
           />
+         
         </Form.Item>
-       
+        <span style={{padding:"20px",color:"red"}}>{errorMessage}</span>
   
         <Form.Item>
           <Button type="primary" htmlType="submit" className="login-form-button">
