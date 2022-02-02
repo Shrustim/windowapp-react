@@ -25,7 +25,7 @@ if(isLogin) {
       <div className="logo" />
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0']}>
         <Menu.Item key="1">Decorate</Menu.Item>
-        <Menu.Item key="2" onClick={()=>{setIsLogin(false);window.location.href = 'http://localhost:3000'; }}>Sign Out</Menu.Item>
+        <Menu.Item key="2" onClick={()=>{setIsLogin(false);window.location.href = 'https://adminpanel-decorate.herokuapp.com/'; }}>Sign Out</Menu.Item>
       </Menu>
     
     </Header>
