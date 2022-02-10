@@ -8,6 +8,7 @@ import Userlist from "./Userlist";
 import OrderDetail from "./OrderDetail";
 import Addproduct from "./Addproduct";
 import NormalLoginForm from "./NormalLoginForm";
+import Refsdemo from "./components/Refsdemo";
 import './DashboardCss.css';
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
@@ -15,7 +16,7 @@ const { Header, Content, Footer, Sider } = Layout;
 
 
 function Routers() {
-const [isLogin,setIsLogin] = useState(false);
+const [isLogin,setIsLogin] = useState(true);
 console.log("isLogin",isLogin);
 if(isLogin) { 
   return (
@@ -47,6 +48,9 @@ if(isLogin) {
                 <Menu.Item key="1"> <Link to="/productadd">Add Product</Link></Menu.Item>
                 <Menu.Item key="2"><Link to="/productlist">Product List</Link></Menu.Item>
             </SubMenu>
+            <SubMenu key="sub3" icon={<LaptopOutlined/>} title="Advanced Points">
+                <Menu.Item key="1"> <Link to="/refsdemo">Refs demo</Link></Menu.Item>
+            </SubMenu>
            
                
             
@@ -61,7 +65,7 @@ if(isLogin) {
             <Route  path="/productadd" element={<Addproduct/>}/>
             <Route  path="/productedit/:id" element={<Addproduct/>}/>
             <Route  path="/orderdetail/:id" element={<OrderDetail/>}/>
-           
+            <Route path='/refsdemo' element={<Refsdemo/>} />
             
         </Routes>
 
