@@ -1,7 +1,7 @@
 
 import React,{Component,useContext } from 'react';
 import { UserProvider,UserConsumer,UserContext } from './useContext';
-import { ThemeProvider,ThemeConsumer } from './themeContext';
+import { ThemeProvider,ThemeConsumer,ThemeContext } from './themeContext';
 
 class Contextdemo3Class extends Component {
 	render() {
@@ -43,10 +43,11 @@ const Contextdemo4Function = () => {
 }
 const UseContextHook5 = () => {
 	 const user = useContext(UserContext);
+	  const theme = useContext(ThemeContext);
 	return (
 		<div>
 		   <h2>useContext Hook 5 </h2>
-           <h2>- Username: {user}</h2>
+           <h2>- Username: {user} - theme : {theme}</h2>
 		</div>
 		)
 }
