@@ -9,6 +9,7 @@ import OrderDetail from "./OrderDetail";
 import Addproduct from "./Addproduct";
 import NormalLoginForm from "./NormalLoginForm";
 import Refsdemo from "./components/Refsdemo";
+import Contextdemo from "./components/context/Contextdemo";
 import './DashboardCss.css';
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
@@ -45,11 +46,12 @@ if(isLogin) {
                  <Menu.Item key="2">  <Link to="/userlist">User List</Link></Menu.Item>
              </SubMenu>
             <SubMenu key="sub1" icon={<LaptopOutlined/>} title="Product">
-                <Menu.Item key="1"> <Link to="/productadd">Add Product</Link></Menu.Item>
-                <Menu.Item key="2"><Link to="/productlist">Product List</Link></Menu.Item>
+                <Menu.Item key="3"> <Link to="/productadd">Add Product</Link></Menu.Item>
+                <Menu.Item key="4"><Link to="/productlist">Product List</Link></Menu.Item>
             </SubMenu>
             <SubMenu key="sub3" icon={<LaptopOutlined/>} title="Advanced Points">
-                <Menu.Item key="1"> <Link to="/refsdemo">Refs demo</Link></Menu.Item>
+                <Menu.Item key="5"> <Link to="/refsdemo">Refs demo</Link></Menu.Item>
+                <Menu.Item key="6"> <Link to="/contextdemo">Context demo</Link></Menu.Item>
             </SubMenu>
            
                
@@ -66,6 +68,8 @@ if(isLogin) {
             <Route  path="/productedit/:id" element={<Addproduct/>}/>
             <Route  path="/orderdetail/:id" element={<OrderDetail/>}/>
             <Route path='/refsdemo' element={<Refsdemo/>} />
+            <Route path='/contextdemo' element={<Contextdemo/>} />
+            
             
         </Routes>
 
