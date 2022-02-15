@@ -21,7 +21,7 @@ const NormalLoginForm = lazy(() => import('./NormalLoginForm'));
 const Refsdemo = lazy(() => import('./components/Refsdemo'));
 const Contextdemo = lazy(() => import('./components/context/Contextdemo'));
 const LazySuspence = lazy(() => import('./components/codesplitting/LazySuspence'));;
-
+const ForwardingRefs = lazy(() => import('./components/ForwardingRefs'));
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -64,6 +64,7 @@ if(isLogin) {
                 <Menu.Item key="5"> <Link to="/refsdemo">Refs demo</Link></Menu.Item>
                 <Menu.Item key="6"> <Link to="/contextdemo">Context demo</Link></Menu.Item>
                 <Menu.Item key="7"> <Link to="/lazysuspence">Code-Splitting Lazy Suspence</Link></Menu.Item>
+                <Menu.Item key="8"> <Link to="/forwardingrefs">Forwarding Refs</Link></Menu.Item>
                 
             </SubMenu>
            
@@ -85,6 +86,8 @@ if(isLogin) {
                         <Route path='/refsdemo' element={<Refsdemo/>} />
                         <Route path='/contextdemo' element={<Contextdemo/>} />
                         <Route path="/lazysuspence" element={<LazySuspence/>} />
+                        <Route path="/forwardingrefs" element={<ForwardingRefs/>} />
+                        
                   </Routes>
             </Suspense>
        
