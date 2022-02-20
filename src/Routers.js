@@ -7,7 +7,7 @@ import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/
 // import Userlist from "./Userlist";
 // import OrderDetail from "./OrderDetail";
 // import Addproduct from "./Addproduct";
-// import NormalLoginForm from "./NormalLoginForm";
+ import NormalLoginForm from "./NormalLoginForm";
 // import Refsdemo from "./components/Refsdemo";
 // import Contextdemo from "./components/context/Contextdemo";
 // import LazySuspence from "./components/codesplitting/LazySuspence";
@@ -17,7 +17,7 @@ const Orderlist = lazy(() => import('./Orderlist'));
 const Userlist = lazy(() => import('./Userlist'));
 const OrderDetail = lazy(() => import('./OrderDetail'));
 const Addproduct = lazy(() => import('./Addproduct'));
-const NormalLoginForm = lazy(() => import('./NormalLoginForm'));
+//const NormalLoginForm = lazy(() => import('./NormalLoginForm'));
 const Refsdemo = lazy(() => import('./components/Refsdemo'));
 const Contextdemo = lazy(() => import('./components/context/Contextdemo'));
 const LazySuspence = lazy(() => import('./components/codesplitting/LazySuspence'));;
@@ -31,7 +31,7 @@ const { Header, Content, Footer, Sider } = Layout;
 
 
 function Routers() {
-const [isLogin,setIsLogin] = useState(true);
+const [isLogin,setIsLogin] = useState(false);
 console.log("isLogin",isLogin);
 if(isLogin) { 
   return (
@@ -63,7 +63,7 @@ if(isLogin) {
                 <Menu.Item key="3"> <Link to="/productadd">Add Product</Link></Menu.Item>
                 <Menu.Item key="4"><Link to="/productlist">Product List</Link></Menu.Item>
             </SubMenu>
-            <SubMenu key="sub3" icon={<LaptopOutlined/>} title="Advanced Points">
+          {/*  <SubMenu key="sub3" icon={<LaptopOutlined/>} title="Advanced Points">
                 <Menu.Item key="5"> <Link to="/refsdemo">Refs demo</Link></Menu.Item>
                 <Menu.Item key="6"> <Link to="/contextdemo">Context demo</Link></Menu.Item>
                 <Menu.Item key="7"> <Link to="/lazysuspence">Code-Splitting Lazy Suspence</Link></Menu.Item>
@@ -72,7 +72,7 @@ if(isLogin) {
                 <Menu.Item key="10"> <Link to="/higherOrderComp">HigherOrderComp</Link></Menu.Item>
                  <Menu.Item key="11"> <Link to="/react-query">React Query</Link></Menu.Item>
                 
-            </SubMenu>
+            </SubMenu>*/}
            
                
             
