@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@progress/kendo-react-dropdowns": "^5.0.1",
+    "@progress/kendo-react-grid": "^5.0.1",
+    "@progress/kendo-theme-default": "^5.1.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
