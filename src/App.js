@@ -6,8 +6,12 @@ import Task1 from "./components/Task1";
 import Task2 from "./components/Task2";
 function App() {
   return (
-    <Task2/>
-    // <Routers />
+    <div>
+    {/*  task given by sir  using kendo ui react libraray....   <Task2/>
+    */}
+ 
+     <Routers />
+    </div>
   );
 }
 

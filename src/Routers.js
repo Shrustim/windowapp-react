@@ -65,7 +65,7 @@ if(isLogin) {
                 <Menu.Item key="3"> <Link to="/productadd">Add Product</Link></Menu.Item>
                 <Menu.Item key="4"><Link to="/productlist">Product List</Link></Menu.Item>
             </SubMenu>
-          {/*  <SubMenu key="sub3" icon={<LaptopOutlined/>} title="Advanced Points">
+           <SubMenu key="sub3" icon={<LaptopOutlined/>} title="Advanced Points">
                 <Menu.Item key="5"> <Link to="/refsdemo">Refs demo</Link></Menu.Item>
                 <Menu.Item key="6"> <Link to="/contextdemo">Context demo</Link></Menu.Item>
                 <Menu.Item key="7"> <Link to="/lazysuspence">Code-Splitting Lazy Suspence</Link></Menu.Item>
@@ -75,10 +75,10 @@ if(isLogin) {
 
                 <Menu.Item key="11"> <Link to="/renderprops">RenderProps</Link></Menu.Item>
 
-                 <Menu.Item key="11"> <Link to="/react-query">React Query</Link></Menu.Item>
+                 <Menu.Item key="12"> <Link to="/react-query">React Query</Link></Menu.Item>
 
                 
-            </SubMenu>*/}
+            </SubMenu>
            
                
             
