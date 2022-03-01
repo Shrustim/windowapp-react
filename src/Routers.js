@@ -1,5 +1,6 @@
 import React, { useState,Suspense, lazy } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
+import './App.css';
 import { BrowserRouter as Router, Route, Routes ,Link } from 'react-router-dom'
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 // import Productlist from"./Productlist";
@@ -25,7 +26,7 @@ const ForwardingRefs = lazy(() => import('./components/ForwardingRefs'));
 const Portals = lazy(() => import("./components/Portals"));
 const HigherOrderComp = lazy(() => import("./components/hoc/HigherOrderComp"));
 const RenderProps = lazy(() => import('./components/RenderProps'));
-
+const ReduxToolkit = lazy(() => import('./components/redux_toolkit/ReduxToolkit'));
 const ReactQuery = lazy(() => import('./components/react_query/ReactQuery'));
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
@@ -33,7 +34,7 @@ const { Header, Content, Footer, Sider } = Layout;
 
 
 function Routers() {
-const [isLogin,setIsLogin] = useState(false);
+const [isLogin,setIsLogin] = useState(true);
 console.log("isLogin",isLogin);
 if(isLogin) { 
   return (
@@ -74,9 +75,9 @@ if(isLogin) {
                 <Menu.Item key="10"> <Link to="/higherOrderComp">HigherOrderComp</Link></Menu.Item>
 
                 <Menu.Item key="11"> <Link to="/renderprops">RenderProps</Link></Menu.Item>
-
                  <Menu.Item key="12"> <Link to="/react-query">React Query</Link></Menu.Item>
-
+               <Menu.Item key="13"> <Link to="/react-redux-toolkit">Redux Toolkit</Link></Menu.Item>
+                
                 
             </SubMenu>
            
@@ -103,6 +104,7 @@ if(isLogin) {
                         <Route path="/higherOrderComp" element={<HigherOrderComp/>} />
                         <Route path="/renderprops" element={<RenderProps/>} />
                         <Route path="/react-query" element={<ReactQuery/>} />
+                        <Route path="/react-redux-toolkit" element={<ReduxToolkit/>} />
                         
                   </Routes>
             </Suspense>

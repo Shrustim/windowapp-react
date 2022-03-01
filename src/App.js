@@ -1,5 +1,4 @@
 import logo from './logo.svg';
-import './App.css';
 import Routers from './Routers';
 import 'antd/dist/antd.css'; 
 import Task1 from "./components/Task1";
