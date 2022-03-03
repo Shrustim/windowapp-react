@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import Counter from "./Counter";
 import Books from "./Books";
-
+import Students from "./Students";
 const ReduxToolkit = () => {
 
   return(
@@ -10,6 +10,8 @@ const ReduxToolkit = () => {
           <Counter/>
        <br/>
           <Books/>
+       <br/>
+          <Students/>   
 	        
   	</div>
   	)
