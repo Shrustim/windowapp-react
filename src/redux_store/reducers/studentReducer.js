@@ -8,8 +8,9 @@ const initialState =  [];
 	})
 	.addCase("EDIT_STUDENT",(state, action) => {
          const newData = state;
-	     const index = newData.indexOf(action.payload.currentBook);
-	     newData[index]=action.payload.updatedBook;
+	     const index = newData.indexOf(action.payload.currentStudent);
+	     console.log("ok",action.payload);
+	     newData[index]=action.payload.updatedStudent;
         return newData;
     })
 	.addCase("REMOVE_STUDENT",(state, action) => {

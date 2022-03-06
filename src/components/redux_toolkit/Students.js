@@ -1,5 +1,6 @@
 import React,{useState} from "react"
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import { addStudent_Action , editStudent_Action, removeStudent_Action}  from "../../redux_store/actions/actionss";
 const StudentShow = ({studentname}) => {
 	const dispatch = useDispatch();
 	const [editFlag,setEditFlag] = useState(false);
@@ -9,18 +10,12 @@ const StudentShow = ({studentname}) => {
             <>
                      <li>
                       {editFlag 
-                      	? 
+                      	?  
                       	<>
 				 			<input type="text" onChange={(e) => {setEditStudentName(e.target.value)}} value={editStudentName}  />
-				            <button type="button" onClick={() =>{ dispatch(
-				            	{
-				            		type:"EDIT_STUDENT",
-				            		payload:
-				            		           {"currentStudent":editCurrentStudentName,
+				            <button type="button" onClick={() =>{ dispatch(editStudent_Action({"currentStudent":editCurrentStudentName,
 				            		           "updatedStudent":editStudentName
-				            		           }
-				            		        
-				                } ); setEditFlag(false)}} style={{marginLeft:"10px"}}> Edit Student</button>
+				            		           })); setEditFlag(false)}} style={{marginLeft:"10px"}}> Edit Student</button>
 				             <button type="button" onClick={() =>{ setEditFlag(false)}} style={{marginLeft:"10px"}}>Cancel</button>
 				            
                         </>
@@ -28,7 +23,7 @@ const StudentShow = ({studentname}) => {
                       <><label>{studentname} </label> 
                       <span style={{color: "red",paddingLeft: "10px"}} onClick={() => { setEditFlag(true);setEditStudentName(studentname);setCurrentStudentName(studentname)}}>edit</span>  
                      </>}
-                      <span onClick={()=>{dispatch({type:"REMOVE_STUDENT",payload:studentname})}} style={{color: "red",paddingLeft: "10px"}}>Delete</span></li>
+                      <span onClick={()=>{dispatch(removeStudent_Action(studentname))}} style={{color: "red",paddingLeft: "10px"}}>Delete</span></li>
               
             </>
 		);
@@ -39,8 +34,7 @@ const Students = () => {
 	const [studentName,setStudentName] = useState("");
 	const addStudent = () => {
 		console.log("Studentname",studentName);
-		//dispatch(addStudents(studentName))
-		dispatch({type:"ADD_STUDENT",payload:studentName })
+		dispatch(addStudent_Action(studentName))
 		console.log("students",students);
 	}
 	
