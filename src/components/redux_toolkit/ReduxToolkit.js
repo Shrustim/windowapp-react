@@ -3,6 +3,7 @@ import Counter from "./Counter";
 import Books from "./Books";
 import Students from "./Students";
 import UserLogin from "./UserLogin";
+import RTKQuery from "./RTKQuery";
 const ReduxToolkit = () => {
 
   return(
@@ -15,6 +16,8 @@ const ReduxToolkit = () => {
           <Students/>   
 	       <br/>
          <UserLogin/> 
+        <br/>
+        <RTKQuery/> 
   	</div>
   	)
 }
