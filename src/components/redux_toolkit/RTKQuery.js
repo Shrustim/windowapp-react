@@ -38,7 +38,7 @@ const RTKQuery = () => {
                     <>
                     {
                         data.results.map((e) => {
-                            return <h3 onClick={() => setPokeName(e.name)} >{e.name}</h3>
+                            return <h3 onClick={() => setPokeName(e.name)} key={e.name} >{e.name}</h3>
                         })
                     }
                    
