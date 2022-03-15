@@ -15,7 +15,7 @@ import {
 import {
   useParams, Link,useNavigate 
 } from "react-router-dom";
-import { useGetProductByIdQuery  } from '../../redux_store/services/productsRTK';
+import { useGetProductByIdQuery,useAddProductMutation ,useUpdateProductMutation } from '../../redux_store/services/productsRTK';
 const { Option } = Select;
 
 const formItemLayout = {
@@ -50,15 +50,12 @@ const tailFormItemLayout = {
 };
 
 const ProductCurdOpRTKDetail = ({editId}) => {
-   const navigate = useNavigate();
   const id = editId;
   const [form] = Form.useForm();
   const [category,setCategory]=useState([]);
-  //const [product,setProduct]=useState(null);
-  var product= null;
   const { data, error, isLoading } = useGetProductByIdQuery(editId);
-  
-  
+  const [addProduct] = useAddProductMutation();
+  const [updateProduct] = useUpdateProductMutation();
   useEffect(()=>{
     axios.get(`https://temp-app-windowshop.herokuapp.com/categories`)
     .then(res => {
@@ -66,39 +63,21 @@ const ProductCurdOpRTKDetail = ({editId}) => {
     })
   },[]);
   
-//   const getProductInfoForUpdate = () => {
-//     axios.get(`https://temp-app-windowshop.herokuapp.com/products/${id}`)
-//       .then(res => {
-//         setProduct(res.data);
-//         console.log("product",res.data);
-//        form.resetFields();
-//     })
-//   }
-
   console.log("id",editId)
-       
-      
-        useEffect(()=>{
+    useEffect(()=>{
             form.resetFields();
            
           });
-    
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         if( id === null  ){
-            console.log('Received values of form: ', values);
-            axios.post(`https://temp-app-windowshop.herokuapp.com/products`,values)
-            .then(res => {
+            await addProduct(values);
             form.resetFields();
-            })
+           
        }else{
-           console.log('update values of form: ', values);
-            axios.patch(`https://temp-app-windowshop.herokuapp.com/products/${id}`,values)
-            .then(res => {
-             //form.resetFields();
-             navigate('/productlist');
-             //  history.push("/productlist");
-            })
-       }  
+            values.id = editId;
+            await updateProduct(values);
+            form.resetFields();
+        }  
       };
   console.log(data);
   
