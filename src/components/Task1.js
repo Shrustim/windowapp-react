@@ -34,7 +34,7 @@ export default function Task1() {
             setStateList(result)
             console.log(typeof result)
 
-            console.log(result, Object.keys(result).length);
+            //console.log(result, Object.keys(result).length);
         },
         (error) => {
         }
