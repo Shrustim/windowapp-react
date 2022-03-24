@@ -28,6 +28,7 @@ const HigherOrderComp = lazy(() => import("./components/hoc/HigherOrderComp"));
 const RenderProps = lazy(() => import('./components/RenderProps'));
 const ReduxToolkit = lazy(() => import('./components/redux_toolkit/ReduxToolkit'));
 const ReactQuery = lazy(() => import('./components/react_query/ReactQuery'));
+const SanitizeCode = lazy(() => import('./components/SanitizeCode'));
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -78,6 +79,8 @@ if(isLogin) {
                  <Menu.Item key="12"> <Link to="/react-query">React Query</Link></Menu.Item>
                <Menu.Item key="13"> <Link to="/react-redux-toolkit">Redux Toolkit</Link></Menu.Item>
                 
+               <Menu.Item key="14"> <Link to="/sanitize-code">Sanitize HTML Code</Link></Menu.Item>
+                
                 
             </SubMenu>
            
@@ -105,6 +108,7 @@ if(isLogin) {
                         <Route path="/renderprops" element={<RenderProps/>} />
                         <Route path="/react-query" element={<ReactQuery/>} />
                         <Route path="/react-redux-toolkit" element={<ReduxToolkit/>} />
+                        <Route path="/sanitize-code" element={<SanitizeCode/>} />
                         
                   </Routes>
             </Suspense>
