@@ -30,6 +30,7 @@ const ReduxToolkit = lazy(() => import('./components/redux_toolkit/ReduxToolkit'
 const ReactQuery = lazy(() => import('./components/react_query/ReactQuery'));
 const SanitizeCode = lazy(() => import('./components/SanitizeCode'));
 const CustomHook = lazy(() => import('./components/customHook/CustomHook'));
+const TestCase = lazy(() => import('./components/testcase/TestCase'));
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -82,6 +83,7 @@ if(isLogin) {
                 
                <Menu.Item key="14"> <Link to="/sanitize-code">Sanitize HTML Code</Link></Menu.Item>
                <Menu.Item key="14"> <Link to="/custom-hook">Custom Hook</Link></Menu.Item>
+               <Menu.Item key="15"> <Link to="/test-case">Test case</Link></Menu.Item>
                 
                 
             </SubMenu>
@@ -112,6 +114,7 @@ if(isLogin) {
                         <Route path="/react-redux-toolkit" element={<ReduxToolkit/>} />
                         <Route path="/sanitize-code" element={<SanitizeCode/>} />
                         <Route path="/custom-hook" element={<CustomHook/>} />
+                         <Route path="/test-case" element={<TestCase/>} />
                         
                   </Routes>
             </Suspense>
