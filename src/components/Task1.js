@@ -54,7 +54,7 @@ export default function Task1() {
                 
                 Object.keys(stateList).map((key) =>
                 {
-                    return(  <States statename={stateList[key].name} cities={stateList[key].cities} />                            
+                    return(  <States statename={stateList[key].name} key={stateList[key].name} cities={stateList[key].cities} />                            
                              )
                 } )
                        
