@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Testcomponent1 from './Testcomponent1';
+import Testcomponent1 from '../Testcomponent1';
 
   test('should be check title render or not through prop by getByText method ', () => {
     render(<Testcomponent1 title="my heading" />);

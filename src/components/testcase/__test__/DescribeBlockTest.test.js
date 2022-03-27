@@ -1,7 +1,7 @@
 //describe block is use to group the block of test cases
 
 import { render, screen } from '@testing-library/react';
-import TestComp2Assertion from './TestComp2Assertion';
+import TestComp2Assertion from '../TestComp2Assertion';
 import { BrowserRouter } from "react-router-dom"
 //different assertions  examples
 const MockTodoFooter = ({ numberOfIncompleteTasks }) => {
