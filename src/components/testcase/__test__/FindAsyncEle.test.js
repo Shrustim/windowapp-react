@@ -4,12 +4,26 @@ import FindAsyncEle from '../FindAsyncEle';
 // Mocking Request 
 //node_modulues/react-script/script/utils/createJestConfig.js change in this file 
 //   -- resetMocks:true   => resetMocks:false
+//Before &After Each
 
 
 describe('FindAsyncEle',()=>{
-    // beforeEach(() => {
-    //     jest.mock("../__mocks__/axios")
-    // })
+    beforeEach(() => {
+        console.log("RUNS BEFORE EACH TEST")
+        // jest.mock("../../../__mocks__/axios")
+    })
+
+    beforeAll(() => {
+        console.log("RUNS ONCE BEFORE ALL TESTS")
+    })
+
+    afterEach(() => {
+        console.log("RUNS AFTER EACH TEST")
+    })
+
+    afterAll(() => {
+        console.log("RUNS ONCE AFTER ALL TESTS")
+    })
 
     it('should render  element of pokemon', async () => {
         render(

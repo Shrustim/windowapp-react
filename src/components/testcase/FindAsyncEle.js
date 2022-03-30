@@ -11,7 +11,7 @@ export default function FindAsyncEle() {
     },[]);
   return (
     <div>
-        <h3>* <u>Finding Async Elements with FindBy and Mocking requests</u></h3>
+        <h3>* <u>Finding Async Elements with FindBy , Mocking requests and  Before &After Each</u></h3>
 
        {pokemons.length > 0
        ? 
