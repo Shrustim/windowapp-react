@@ -18,6 +18,7 @@ const Orderlist = lazy(() => import('./Orderlist'));
 const Userlist = lazy(() => import('./Userlist'));
 const OrderDetail = lazy(() => import('./OrderDetail'));
 const Addproduct = lazy(() => import('./Addproduct'));
+const AddProductPrice = lazy(() => import('./AddProductPrice'));
 //const NormalLoginForm = lazy(() => import('./NormalLoginForm'));
 const Refsdemo = lazy(() => import('./components/Refsdemo'));
 const Contextdemo = lazy(() => import('./components/context/Contextdemo'));
@@ -69,7 +70,7 @@ if(isLogin) {
                 <Menu.Item key="3"> <Link to="/productadd">Add Product</Link></Menu.Item>
                 <Menu.Item key="4"><Link to="/productlist">Product List</Link></Menu.Item>
             </SubMenu>
-           <SubMenu key="sub3" icon={<LaptopOutlined/>} title="Advanced Points">
+       {/*    <SubMenu key="sub3" icon={<LaptopOutlined/>} title="Advanced Points">
                 <Menu.Item key="5"> <Link to="/refsdemo">Refs demo</Link></Menu.Item>
                 <Menu.Item key="6"> <Link to="/contextdemo">Context demo</Link></Menu.Item>
                 <Menu.Item key="7"> <Link to="/lazysuspence">Code-Splitting Lazy Suspence</Link></Menu.Item>
@@ -87,7 +88,7 @@ if(isLogin) {
                 
                 
             </SubMenu>
-           
+           */}
                
             
         
@@ -114,6 +115,8 @@ if(isLogin) {
                         <Route path="/react-redux-toolkit" element={<ReduxToolkit/>} />
                         <Route path="/sanitize-code" element={<SanitizeCode/>} />
                         <Route path="/custom-hook" element={<CustomHook/>} />
+                        <Route path="/producteditprice/:id" element={<AddProductPrice/>} />
+                        
                          <Route path="/test-case" element={<TestCase/>} />
                         
                   </Routes>

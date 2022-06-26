@@ -192,7 +192,7 @@ const Addproduct = () => {
       </Form.Item>
 
 
-      <Form.Item
+     {/* <Form.Item
         name="price"
         label="Price"
         rules={[
@@ -209,7 +209,7 @@ const Addproduct = () => {
         />
       </Form.Item>
 
-     
+     */}
 
     
       <Form.Item

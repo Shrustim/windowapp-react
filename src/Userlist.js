@@ -18,12 +18,8 @@ const columns = [
     title: 'Address',
     dataIndex: 'address',
     key: 'address',
-    },
-    {
-      title: 'Pincode',
-      dataIndex: 'pincode',
-      key: 'pincode',
     }
+   
   
 ];
 

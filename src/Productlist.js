@@ -31,6 +31,7 @@ const columns = [
     key: 'action',
     render: (text, record) => (
       <Space size="middle">
+       <Link to={"/producteditprice/"+text.id+""}>Add Price</Link>
        <Link to={"/productedit/"+text.id+""}>Edit</Link>
       </Space>
     ),

@@ -26,13 +26,25 @@ const columns = [
   },
   {
     title: 'Pincode',
-    dataIndex: 'pincode',
+    dataIndex: 'pincodeNo',
     key: 'pincode',
   },
  {
     title: 'Address',
     dataIndex: 'address',
     key: 'address',
+  },
+  {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      render: (text) => (
+        <>
+           <Tag color={text == "pending" ? "red" : "green"} >
+                {text}
+              </Tag>
+        </>
+      ),
   },
   {
     title: 'Action',
@@ -50,7 +62,7 @@ const columns = [
 function Orderlist(){
   const [data,setData]=useState([]);
   useEffect(()=>{
-    axios.get(`https://temp-app-windowshop.herokuapp.com/orders?filter=%7B%22order%22%3A%20%22id%20DESC%22%7D`)
+    axios.get(`https://temp-app-windowshop.herokuapp.com/ordersAllList`)
     .then(res => {
       const persons = res.data;
       setData(res.data);

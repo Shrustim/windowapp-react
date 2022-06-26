@@ -1,4 +1,4 @@
-import { Table,Button } from 'antd';
+import { Table,Button,Radio,message  } from 'antd';
 import {
   useParams, Link,useNavigate 
 } from "react-router-dom";
@@ -21,6 +21,11 @@ const columns = [
     title: 'Qty',
     dataIndex: 'qty',
     key: 'qty',
+    render: (text, record) => (
+      <span>
+        {record.qty} ({record.dbQty}{record.unitName})
+      </span>
+    ),
   },
   {
     title: 'Price',
@@ -34,7 +39,9 @@ const columns = [
 function OrderDetail(){
    const navigate = useNavigate();
    let { id } = useParams();
+    const [value, setValue] = useState("");
     const [products,setProducts]=useState(null);
+    const [orderDataaa,setOrderDataaa] = useState(null)
      const [userDetail,setUserDetail]=useState({});
     const getProductInfoOrder = () => {
             axios.get(`https://temp-app-windowshop.herokuapp.com/orders/${id}`)
@@ -42,10 +49,12 @@ function OrderDetail(){
           setUserDetail(res.data);
           console.log("setUserDetail",res.data);
           const orderData = res.data;
+          setOrderDataaa(orderData)
             axios.get(`https://temp-app-windowshop.herokuapp.com/users/${res.data.userId}`)
           .then(res => {
            // setProducts(res.data);
             console.log("user",res.data);
+            setValue(orderData.status)
             const userData = res.data;
             setUserDetail({
               "name":userData.name,
@@ -71,7 +80,23 @@ function OrderDetail(){
      getProductInfoOrder();
     }
    },[id]);
-
+const onChange = async(e) => {
+    console.log('radio checked', e.target.value);
+    setValue(e.target.value);
+    const updateData = {
+     
+       // ...orderDataaa,
+         "status": e.target.value,
+     }
+  console.log("updateData",updateData)
+     axios.patch(`https://temp-app-windowshop.herokuapp.com/orders/${id}`,updateData)
+        .then(res => {
+          message.success('Status updated successfully.');
+         //form.resetFields();
+         //  history.push("/productlist");
+        })
+    
+  };
 return(<div>
      <h2>Order Detail 
 
@@ -87,7 +112,14 @@ return(<div>
       <h3> Pincode : {userDetail.pincode}</h3>
       <h3> QTY : {userDetail.qty}</h3>
       <h3> TOTAL : {userDetail.totalPrice}</h3>
+      <div>
+        <Radio.Group onChange={onChange} value={value}>
+          <Radio value={"pending"}>Pending</Radio>
+          <Radio value={"completed"}>Completed</Radio>
+        </Radio.Group>
 
+      </div>
+  <br/>
   <Table columns={columns} dataSource={products} />
   </div>);
 }
