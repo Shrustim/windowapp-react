@@ -58,12 +58,16 @@ const Addproduct = () => {
   const [product,setProduct]=useState(null);
   const onFinish = (values) => {
     if(typeof id === "undefined"  ){
+      values.subCategoryId = 17;
+      values.is_active = 1
         console.log('Received values of form: ', values);
         axios.post(`https://temp-app-windowshop.herokuapp.com/products`,values)
         .then(res => {
         form.resetFields();
         })
    }else{
+    values.subCategoryId = 17;
+    values.is_active = 1
        console.log('update values of form: ', values);
         axios.patch(`https://temp-app-windowshop.herokuapp.com/products/${id}`,values)
         .then(res => {
