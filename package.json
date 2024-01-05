@@ -12,7 +12,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.18.2",
-    "axios": "^0.24.0",
+    "axios": "^1.6.4",
     "copy-to-clipboard": "^3.3.1",
     "dompurify": "^2.3.6",
     "framer-motion": "^6.2.4",
